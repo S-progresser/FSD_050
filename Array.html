@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Find Largest and Smallest</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            text-align: center;
+            background-color: #eee;
+        }
+
+        .container {
+            width: 350px;
+            margin: 50px auto;
+            padding: 25px;
+            background-color: white;
+            box-shadow: 0 0 10px gray;
+        }
+
+        input, button {
+            padding: 10px;
+            margin: 5px;
+        }
+
+        button {
+            background-color: blue;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        #result {
+            font-size: 18px;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h2>Find Largest & Smallest</h2>
+
+        <input type="text" id="numInput" placeholder="e.g. 10, 45, 2, 89, 23">
+
+        <br>
+
+        <button onclick="findMinMax()">Find</button>
+
+        <p id="result"></p>
+
+    </div>
+
+    <script>
+        function findMinMax() {
+            let inputStr = document.getElementById("numInput").value;
+
+            if (inputStr.trim() === "") {
+                document.getElementById("result").innerHTML = "Please enter some numbers.";
+                return;
+            }
+            let numArray = inputStr.split(",").map(Number);
+
+            if (numArray.some(isNaN)) {
+                document.getElementById("result").innerHTML = "Please enter valid comma-separated numbers.";
+                return;
+            }
+
+            let smallest = numArray[0];
+            let largest = numArray[0];
+
+            for (let i = 1; i < numArray.length; i++) {
+                if (numArray[i] > largest) {
+                    largest = numArray[i];
+                }
+                if (numArray[i] < smallest) {
+                    smallest = numArray[i];
+                }
+            }
+
+            
+            document.getElementById("result").innerHTML = 
+                "Array: [" + numArray.join(", ") + "]<br>" +
+                "Largest Number = " + largest + "<br>" +
+                "Smallest Number = " + smallest;
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Search</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            text-align: center;
+        }
+
+        input {
+            padding: 10px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: blue;
+            color: white;
+            border: none;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Student Search System</h1>
+
+    <input type="text" id="studentName"
+           placeholder="Enter student name">
+
+    <button onclick="searchStudent()">
+        Search
+    </button>
+
+    <div id="result"></div>
+
+    <script>
+
+        let students = [
+            { 
+                name: "Rahul",
+                age: 20,
+                marks: 85
+            },
+            {
+                name: "Priya",
+                age: 21,
+                marks: 92
+            },
+            {
+                name: "Arun",
+                age: 20,
+                marks: 76
+            }
+        ];
+
+        function searchStudent() {
+
+            let name =
+                document.getElementById("studentName").value;
+
+            let student = students.find(function(s) {
+                return s.name.toLowerCase() ===
+                       name.toLowerCase();
+            });
+
+            if (student) {
+
+                document.getElementById("result").innerHTML =
+                    "Name: " + student.name + "<br>" +
+                    "Age: " + student.age + "<br>" +
+                    "Marks: " + student.marks;
+            }
+            else {
+
+                document.getElementById("result").innerHTML =
+                    "Student not found.";
+            }
+        }
+
+    </script>
+
+</body>
+</html>
